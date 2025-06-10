@@ -42,9 +42,13 @@ class PassResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->contentGrid([
+                'default' => 4,
+            ])
             ->columns([
                 Tables\Columns\TextColumn::make('number')
                     ->searchable()
+
                     ->label('Senhas')
                     ->sortable(),
 
@@ -61,9 +65,7 @@ class PassResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->contentGrid([
-                'xl' => 4,
-            ])
+
             ->filters([
                 //
             ])
