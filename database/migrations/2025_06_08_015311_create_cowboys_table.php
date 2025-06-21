@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('cowboys', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('document');
-            $table->string('phone');
             $table->string('city');
             $table->timestamps();
             $table->softDeletes();

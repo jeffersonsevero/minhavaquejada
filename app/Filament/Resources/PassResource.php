@@ -10,6 +10,7 @@ use App\Models\Pass;
 use App\Models\Representation;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
@@ -106,6 +107,12 @@ class PassResource extends Resource
                                 )
                                 ->required()
                                 ->searchable(),
+
+                            TextInput::make('horse')
+                                ->label('Cavalo')
+                                ->required()
+                                ->maxLength(255),
+
                         ])
                         ->action(function (Collection $records, array $data) {
                             $records->each(function (Pass $pass) use ($data) {
@@ -117,6 +124,7 @@ class PassResource extends Resource
                                     'cowboy_id' => $data['main'],
                                     'helper_id' => $data['helper'],
                                     'representation_id' => $data['representation'],
+                                    'horse' => $data['horse'],
                                 ]);
 
                             });

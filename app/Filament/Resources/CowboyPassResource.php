@@ -33,6 +33,7 @@ class CowboyPassResource extends Resource
                     ->numeric(),
                 Forms\Components\TextInput::make('representation_id')
                     ->numeric(),
+
             ]);
     }
 
@@ -58,6 +59,10 @@ class CowboyPassResource extends Resource
                 Tables\Columns\TextColumn::make('representation.name')
                     ->sortable()
                     ->label('Representação'),
+
+                Tables\Columns\TextColumn::make('horse')
+                    ->label('Cavalo'),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->date('d/m/Y H:i')
                     ->label('Criado em')

@@ -24,19 +24,10 @@ class CowboyResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label('Vaqueiro')
+                    ->unique(ignoreRecord: true)
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('document')
-                    ->label('CPF')
-                    ->mask('999.999.999-99')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
-                    ->label('Telefone')
-                    ->mask('(99) 99999-9999')
-                    ->tel()
-                    ->required()
-                    ->maxLength(255),
+
                 Forms\Components\TextInput::make('city')
                     ->label('Cidade')
                     ->required()
@@ -51,12 +42,7 @@ class CowboyResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->label('Vaqueiro')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('document')
-                    ->label('CPF')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('phone')
-                    ->label('Telefone')
-                    ->searchable(),
+
                 Tables\Columns\TextColumn::make('city')
                     ->label('Cidade')
                     ->searchable(),
