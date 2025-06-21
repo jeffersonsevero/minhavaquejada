@@ -15,6 +15,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\BulkAction;
+use Filament\Tables\Columns\Layout\Stack;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,7 +24,7 @@ class PassResource extends Resource
 {
     protected static ?string $model = Pass::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-key';
 
     protected static ?string $modelLabel = 'Senhas';
 
@@ -43,34 +44,28 @@ class PassResource extends Resource
     {
         return $table
             ->contentGrid([
-                'default' => 4,
+                'default' => 6,
+                'md' => 8,
+                'lg' => 10,
             ])
+            ->deferLoading()
+            ->paginated([50, 100])
+            ->defaultPaginationPageOption(50)
             ->columns([
-                Tables\Columns\TextColumn::make('number')
-                    ->searchable()
 
-                    ->label('Senhas')
-                    ->sortable(),
+                Stack::make([
+                    Tables\Columns\TextColumn::make('number')
+                        ->searchable()
+                        ->label('Senhas')
+                        ->sortable(),
+                ]),
 
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
             ])
 
             ->filters([
-                //
+
             ])
             ->actions([
-                // Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 
 class CowboyPassResource extends Resource
 {
@@ -58,10 +59,9 @@ class CowboyPassResource extends Resource
                     ->sortable()
                     ->label('Representação'),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
+                    ->date('d/m/Y H:i')
                     ->label('Criado em')
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
@@ -101,5 +101,11 @@ class CowboyPassResource extends Resource
             'create' => Pages\CreateCowboyPass::route('/create'),
             'edit' => Pages\EditCowboyPass::route('/{record}/edit'),
         ];
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->orderBy('created_at', 'desc');
     }
 }
