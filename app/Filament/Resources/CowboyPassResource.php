@@ -4,10 +4,12 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\CowboyPassResource\Pages;
 use App\Models\CowboyPass;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -84,6 +86,29 @@ class CowboyPassResource extends Resource
                         $pass->save();
                         $record->delete();
                     }),
+
+                Action::make('pdf')
+                    ->label('Imprimir')
+                    ->color('success')
+                    ->icon('heroicon-o-printer')
+                    ->action(function (CowboyPass $record) {
+
+                        $record->load([
+                            'titular',
+                            'helper',
+                            'pass',
+                            'representation',
+                        ]);
+
+                        $pdf = Pdf::loadView('pdf.pass', compact('record'));
+
+                        return response()
+                            ->streamDownload(function () use ($pdf) {
+                                echo $pdf->output();
+                            }, 'senha_'.$record->pass->number.'.pdf');
+
+                    }),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -119,7 +119,7 @@ class PassResource extends Resource
                                 if (! $pass->category_id) {
                                     $pass->update(['category_id' => $data['category']]);
                                 }
-                                CowboyPass::create([
+                                $cowboyPass = CowboyPass::create([
                                     'pass_id' => $pass->id,
                                     'cowboy_id' => $data['main'],
                                     'helper_id' => $data['helper'],
