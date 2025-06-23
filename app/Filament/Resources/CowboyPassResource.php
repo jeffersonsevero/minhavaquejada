@@ -58,6 +58,12 @@ class CowboyPassResource extends Resource
                 Tables\Columns\TextColumn::make('pass.category.name')
                     ->label('Categoria')
                     ->sortable(),
+
+                Tables\Columns\TextColumn::make('pass.price')
+                    ->label('Preço')
+                    ->money('BRL')
+                    ->sortable(),
+
                 Tables\Columns\TextColumn::make('representation.name')
                     ->sortable()
                     ->label('Representação'),
@@ -100,7 +106,8 @@ class CowboyPassResource extends Resource
                             'representation',
                         ]);
 
-                        $pdf = Pdf::loadView('pdf.pass', compact('record'));
+                        $pdf = Pdf::loadView('pdf.pass', compact('record'))
+                            ->setPaper('a4');
 
                         return response()
                             ->streamDownload(function () use ($pdf) {
