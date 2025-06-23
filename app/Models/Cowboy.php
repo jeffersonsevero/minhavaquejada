@@ -29,4 +29,9 @@ class Cowboy extends Model
     {
         return $this->hasMany(CowboyPass::class, 'helper_id');
     }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
+    }
 }
