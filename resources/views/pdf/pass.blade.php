@@ -54,23 +54,6 @@
                 <span style="font-style: italic;">{{ $record->horse }}</span>
             </div>
 
-            {{-- <!-- Disputa -->
-        <div style="border: 2px solid #000; border-radius: 8px; padding: 10px; margin-top: 20px;">
-            <div style="font-weight: bold; margin-bottom: 8px;">Disputa</div>
-
-            <table style="border-spacing: 5px;">
-                <tr>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                    <td style="width:30px;height:30px;border:2px solid #000;border-radius:4px;"></td>
-                </tr>
-            </table>
-        </div> --}}
 
             <!-- Footer -->
             <div style="margin-top: 10px; text-align: right; font-style: italic; font-size: 12px; color: #555;">

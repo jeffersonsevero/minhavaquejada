@@ -12,6 +12,11 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function categories()
+    {
+        return $this->hasMany(Category::class);
+    }
+
     protected static function booted()
     {
 
