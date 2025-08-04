@@ -57,7 +57,7 @@
 
             <!-- Footer -->
             <div style="margin-top: 10px; text-align: right; font-style: italic; font-size: 12px; color: #555;">
-                Criado em: 21/06/2025 22:09
+                Criado em: {{ $record->created_at->format('d/m/Y H:i') }}
             </div>
 
         </div>

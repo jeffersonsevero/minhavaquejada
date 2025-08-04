@@ -17,7 +17,7 @@ class PassFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'number' => str_pad($this->faker->randomNumber(4), 4, '0', STR_PAD_LEFT),
         ];
     }
 }
