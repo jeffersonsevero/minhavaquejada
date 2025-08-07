@@ -73,6 +73,8 @@ class PassResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                     BulkAction::make('associar')
                         ->label('Comprar senhas')
+                        ->color('success')
+                        ->icon('heroicon-o-key')
                         ->form([
                             Select::make('main')
                                 ->label('Vaqueiro')
@@ -144,6 +146,11 @@ class PassResource extends Resource
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 
     public static function getPages(): array

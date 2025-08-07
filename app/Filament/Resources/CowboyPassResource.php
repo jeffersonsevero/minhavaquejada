@@ -18,7 +18,7 @@ class CowboyPassResource extends Resource
 {
     protected static ?string $model = CowboyPass::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-document-duplicate';
 
     protected static ?string $modelLabel = 'Senha vendida';
 
@@ -153,5 +153,10 @@ class CowboyPassResource extends Resource
     {
         return parent::getEloquentQuery()
             ->orderBy('created_at', 'desc');
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
     }
 }
