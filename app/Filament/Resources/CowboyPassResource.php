@@ -10,6 +10,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -81,7 +82,9 @@ class CowboyPassResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('representation')
+                    ->relationship('representation', 'name')
+                    ->label('Representação'),
             ])
             ->actions([
                 // Tables\Actions\EditAction::make(),
@@ -128,6 +131,12 @@ class CowboyPassResource extends Resource
     {
         return [
             //
+        ];
+    }
+
+    public static function getWidgets(): array
+    {
+        return [
         ];
     }
 
