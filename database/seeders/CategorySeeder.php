@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -30,6 +31,13 @@ class CategorySeeder extends Seeder
         foreach ($categories as $category) {
             Category::create($category);
         }
+
+        User::query()
+            ->create([
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => '123456',
+            ]);
 
     }
 }

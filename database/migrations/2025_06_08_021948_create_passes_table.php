@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('passes', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->foreignId('category_id')->nullable()->constrained();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
 

@@ -12,6 +12,8 @@ class PassByCategoryChart extends ApexChartWidget
      */
     protected static ?string $chartId = 'passByCategoryChart';
 
+    protected static ?string $pollingInterval = null;
+
     /**
      * Widget Title
      */

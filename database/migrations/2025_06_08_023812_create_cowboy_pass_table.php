@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('cowboy_pass', function (Blueprint $table) {
             $table->id();
-
             $table->foreignId('cowboy_id')->constrained('cowboys')->onDelete('cascade'); // titular
             $table->foreignId('pass_id')->constrained('passes')->onDelete('cascade');
             $table->foreignId('helper_id')->nullable()->constrained('cowboys')->onDelete('cascade'); // esteira
             $table->foreignId('representation_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('horse');
-
             $table->timestamps();
 
         });
