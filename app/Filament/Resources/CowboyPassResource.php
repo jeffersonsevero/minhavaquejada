@@ -145,7 +145,6 @@ class CowboyPassResource extends Resource
         return [
             'index' => Pages\ListCowboyPasses::route('/'),
             'create' => Pages\CreateCowboyPass::route('/create'),
-            'edit' => Pages\EditCowboyPass::route('/{record}/edit'),
         ];
     }
 

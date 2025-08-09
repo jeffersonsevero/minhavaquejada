@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandLogo(asset('images/cavalo.png'))
+            ->brandLogoHeight('4rem')
             ->brandName('Parque Antonia Carneiro')
             ->login()
             ->colors([
