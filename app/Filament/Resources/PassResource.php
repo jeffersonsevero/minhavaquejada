@@ -12,6 +12,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -27,7 +28,7 @@ class PassResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
 
-    protected static ?string $modelLabel = 'Senhas';
+    protected static ?string $modelLabel = 'Vitrine de Senhas';
 
     public static function form(Form $form): Form
     {
@@ -78,19 +79,23 @@ class PassResource extends Resource
                         ->form([
                             Select::make('main')
                                 ->label('Vaqueiro')
-                                ->preload(true)
-                                ->options(Cowboy::all()->pluck('name', 'id'))
                                 ->required()
-                                ->searchable(),
+                                ->searchable()
+                                ->getSearchResultsUsing(fn (string $search): array => Cowboy::where('name', 'like', "%{$search}%")->limit(50)->pluck('name', 'id')->toArray()),
 
                             Select::make('helper')
-                                ->label('Esteira')
-                                ->preload(true)
-                                ->options(
-                                    Cowboy::all()->pluck('name', 'id')
-                                )
+                                ->label('Vaqueiro Esteira')
                                 ->required()
-                                ->searchable(),
+                                ->rule('different:main')
+                                ->searchable()
+                                ->getSearchResultsUsing(function (string $search, Get $get): array {
+                                    return Cowboy::query()
+                                        ->when($get('main'), fn (Builder $query, $main) => $query->where('id', '!=', $main))
+                                        ->where('name', 'like', "%{$search}%")
+                                        ->limit(50)
+                                        ->pluck('name', 'id')
+                                        ->toArray();
+                                }),
 
                             Select::make('category')
                                 ->label('Categoria')
