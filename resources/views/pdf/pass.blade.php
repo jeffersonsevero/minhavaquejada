@@ -9,7 +9,7 @@
 <body style="font-family: Arial, sans-serif; margin: 10px; background: #fff; color: #333; ">
 
 
-    @for ($i = 0; $i < 3; $i++)
+    @for ($i = 0; $i < 2; $i++)
         <div
             style="border: 2px solid #000; border-radius: 10px; padding: 20px; max-width: 800px; margin: auto; margin-bottom: 10px;">
 
@@ -53,6 +53,22 @@
                 <label style="font-weight: bold;">Cavalo:</label>
                 <span style="font-style: italic;">{{ $record->horse }}</span>
             </div>
+
+
+            <div>
+                <label style="font-weight: bold; margin-bottom: 10px; ">Disputa</label>
+
+                <div style="font-size:0; margin-top:10px;">
+                    @for ($j = 1; $j <= 10; $j++)
+                      <span style="display:inline-block; border:2px solid #000; width:30px; height:30px; margin-right:5px;"></span>
+                    @endfor
+                </div>
+
+
+
+            </div>
+
+
 
 
             <!-- Footer -->
