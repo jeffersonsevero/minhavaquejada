@@ -6,19 +6,24 @@
     <title>Ficha de Inscrição</title>
 </head>
 
-<body style="font-family: Arial, sans-serif; margin: 10px; background: #fff; color: #333; ">
+<body style="font-family: Arial, sans-serif; margin: 10px; background: #fff; color: #333;">
 
     @for ($i = 0; $i < 2; $i++)
         <div
             style="border: 2px solid #000; border-radius: 10px; padding: 20px; max-width: 800px; margin: auto; margin-bottom: 10px; page-break-inside: avoid;">
 
             <!-- Header -->
-            <table style="width: 100%; margin-bottom: 5px;">
+            <table style="width: 100%; margin-bottom: 5px; border-collapse: collapse;">
                 <tr>
-                    <td style="width: 50%;"></td>
-                    <td style="width: 50%; text-align: right;">
-                        <div
-                            style="border: 2px solid #000; border-radius: 10px; padding: 8px 12px; display: inline-block; text-align: center;">
+                    <!-- ESQUERDA: LOGO -->
+                    <td style="width: 60%; text-align: left; vertical-align: middle;">
+                        <img src="{{ public_path('images/cavalo.png') }}" alt="Logo"
+                             style="display:block; height:50px; width:auto;">
+                    </td>
+
+                    <!-- DIREITA: INSCRIÇÃO -->
+                    <td style="width: 50%; text-align: right; vertical-align: middle;">
+                        <div style="border: 2px solid #000; border-radius: 10px; padding: 8px 12px; display: inline-block; text-align: center;">
                             <span style="display: block; font-size: 12px; color: #555;">Inscrição Nº</span>
                             <strong style="font-size: 14px;">{{ $record->pass->number }}</strong>
                         </div>
@@ -53,7 +58,7 @@
                 <span style="font-style: italic;">{{ $record->horse }}</span>
             </div>
 
-            <!-- Linha com Disputa (esquerda) e Outra Informação (direita) -->
+            <!-- Linha com Disputa (esquerda) e Classificação (direita) -->
             <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
                 <tr>
                     <!-- Esquerda: Disputa -->
@@ -61,26 +66,23 @@
                         <label style="font-weight: bold;">Disputa</label>
                         <div style="margin-top:10px; font-size:0;">
                             @for ($j = 1; $j <= 10; $j++)
-                                <span
-                                    style="display:inline-block; border:2px solid #000; width:30px; height:30px; margin-right:5px;"
-                                ></span>
+                                <span style="display:inline-block; border:2px solid #000; width:30px; height:30px; margin-right:5px;"></span>
                             @endfor
                         </div>
                     </td>
 
-                    <!-- Direita: Outra informação -->
-                    <!-- Direita: Classificação -->
+                    <!-- Direita: Classificação (números em cima dos quadrados) -->
                     <td style="vertical-align: top; width: 30%; text-align: right;">
                         <label style="font-weight: bold;">Classificação</label>
                         <div style="margin-top:10px; font-size:0;">
 
-                            <!-- Quadrado 1 -->
+                            <!-- Item 1 -->
                             <span style="display:inline-block; text-align:center; margin-right:10px; font-size:12px;">
                                 <div style="font-weight:bold; margin-bottom:3px;">1</div>
                                 <div style="border:2px solid #000; width:30px; height:30px;"></div>
                             </span>
 
-                            <!-- Quadrado 2 -->
+                            <!-- Item 2 -->
                             <span style="display:inline-block; text-align:center; font-size:12px;">
                                 <div style="font-weight:bold; margin-bottom:3px;">2</div>
                                 <div style="border:2px solid #000; width:30px; height:30px;"></div>
@@ -88,7 +90,6 @@
 
                         </div>
                     </td>
-
                 </tr>
             </table>
 
@@ -101,5 +102,4 @@
     @endfor
 
 </body>
-
 </html>
