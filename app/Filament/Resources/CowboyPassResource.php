@@ -54,6 +54,7 @@ class CowboyPassResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('pass.number')
                     ->label('Senha')
+                    ->searchable()
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('pass.category.name')

@@ -32,12 +32,15 @@ class CategorySeeder extends Seeder
             Category::create($category);
         }
 
-        User::query()
-            ->create([
-                'name' => 'Admin',
-                'email' => 'admin@gmail.com',
-                'password' => '123456',
-            ]);
+        if (! User::where('email', 'admin@gmail.com')->exists()) {
+            User::query()
+                ->create([
+                    'name' => 'Admin',
+                    'email' => 'admin@gmail.com',
+                    'password' => '123456',
+                ]);
+
+        }
 
     }
 }
