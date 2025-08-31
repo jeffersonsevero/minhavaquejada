@@ -38,8 +38,10 @@ class RepresentationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Representação')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('city')
+                    ->label('Cidade')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
