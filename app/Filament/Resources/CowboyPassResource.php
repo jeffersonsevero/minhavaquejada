@@ -7,12 +7,14 @@ use App\Models\CowboyPass;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class CowboyPassResource extends Resource
 {
@@ -123,7 +125,18 @@ class CowboyPassResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->requiresConfirmation()
+                        ->action(function (Collection $records) {
+
+                            $records->each(function (CowboyPass $cowboyPass) {
+                                $cowboyPass->pass->category_id = null;
+                                $cowboyPass->pass->save();
+                                $cowboyPass->delete();
+                            });
+
+                        })
+                        ->successNotification(Notification::make('Senhas apagadas com sucesso')->success()),
                 ]),
             ]);
     }
