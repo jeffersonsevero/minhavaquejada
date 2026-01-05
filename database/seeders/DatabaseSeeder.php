@@ -21,7 +21,12 @@ class DatabaseSeeder extends Seeder
             // CowboySeeder::class,
         ]);
 
-        User::factory(10)->create();
+        User::query()
+            ->create([
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => '123456',
+            ]);
 
     }
 }
